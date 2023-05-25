@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components/macro';
+import { COLORS, QUERIES, WEIGHTS } from '../../constants';
 
 const GlobalStyles = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -64,13 +65,40 @@ table {
     float above the app.
   */
   isolation: isolate;
+
 }
 
 html {
   /*
-    Silence the warning about missing Reach Dialog styles
+  Silence the warning about missing Reach Dialog styles
   */
   --reach-dialog: 1;
+  --color-white: hsl(${COLORS.white});
+  --color-primary: hsl(${COLORS.primary});
+  --color-secondary: hsl(${COLORS.secondary});
+  --color-gray-100: hsl(${COLORS.gray[100]});
+  --color-gray-300: hsl(${COLORS.gray[300]});
+  --color-gray-500: hsl(${COLORS.gray[500]});
+  --color-gray-700: hsl(${COLORS.gray[700]});
+  --color-gray-900: hsl(${COLORS.gray[900]});
+  
+  --weight-normal: hsl(${WEIGHTS.normal});
+  --weight-medium: hsl(${WEIGHTS.medium});
+  --weight-bold: hsl(${WEIGHTS.bold});
+  
+  --modal-backdrop-color: hsla(${COLORS.gray[700]} / 0.8);
+}
+
+div[data-reach-dialog-overlay] {
+  @media (${QUERIES.tabletAndDown}) {
+    background-color: var(--modal-backdrop-color);
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
 }
 
 html, body, #root {
